@@ -1,0 +1,7 @@
+{ 
+  "baseUrl":"https://iot.aden.pl/projects/saule/pricetag/platform_test",
+  "env": {
+      "baseUrl":"https://iot.aden.pl/projects/saule/pricetag/platform_test"
+  }
+   
+}

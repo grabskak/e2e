@@ -11,7 +11,6 @@ describe("PESL", () =>  {
 
       it('schowsPriceTagList ', ()=>{
         cy.get('#gridPriceTag').should("be.visible")
-      //  cy.get('#gridPriceTag_td_1_0').contains('1')
       })
    
   })

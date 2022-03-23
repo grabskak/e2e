@@ -15,11 +15,11 @@ describe("Accesses", () =>  {
         //cy.get('#gridClientsList_td_1_0').should("be.visible").contains('1')
       })
      
-      //it('schowsPersonList', ()=>{
-     //   cy.get(':nth-child(2) > .side-navigation__category-btn > .side-navigation__text').click()
-      //  cy.get('#module_clients').click()
-        //cy.get('#gridClientsList_td_1_0').contains('1')
-     // })
+      it('schowsPersonList', ()=>{
+        cy.get(':nth-child(2) > .side-navigation__category-btn > .side-navigation__text').click()
+        cy.get('#module_clients').click()
+        cy.get('#gridClientsList_td_1_0').contains('1')
+      })
 
  
   })

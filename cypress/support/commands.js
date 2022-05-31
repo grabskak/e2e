@@ -23,3 +23,23 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('login',() => {
+    //cy.visit('/#/platform_test/login.php')
+    cy.get('#login-username').type('k.grabska@aden.pl')
+    cy.get('#login-password').type('Testye2e')
+    cy.get('.login__submit-btn').click()
+})
+
+Cypress.Commands.add('loginAPI',() => {
+    cy.request({
+        method: 'POST',
+        url: 'https://aden-pricetag-platform.azurewebsites.net/api/User/Login',
+        body: {
+            "email": "k.grabska@aden.pl",
+            "password": "Testye2e"
+        }
+})
+.then((resp)=> {
+    window.localStorage.setItem('jwt',resp.body.token)
+})   
+})

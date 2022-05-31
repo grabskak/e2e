@@ -1,7 +1,6 @@
 describe("Login Page", () =>  {
   
   before(() => {  
-   // cy.login();
       cy.visit('/');  
     })
 
@@ -10,9 +9,7 @@ describe("Login Page", () =>  {
     })
 
     it("should login with access", ()=> {
-      cy.get('#login-username').type('k.grabska@aden.pl');
-      cy.get('#login-password').type('Testye2e');
-      cy.get('.login__submit-btn').click();
+      cy.login()
       cy.url().should('eq', Cypress.env('baseUrl') + '/index.php'); 
     })
 })

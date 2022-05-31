@@ -19,4 +19,13 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  // https://github.com/bahmutov/cypress-email-results
+  // only configure the email plugin if the environment variable is set  
+   // require('cypress-email-results')(on, config, {
+      //email: process.env.EMAIL_TO,
+   //   email: ['k.grabska@aden.pl'],
+   //   emailOnSuccess: false,
+   //   dry: true,
+  //  })
+ 
 }

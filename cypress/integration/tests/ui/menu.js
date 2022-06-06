@@ -6,7 +6,9 @@ describe("Menu", () =>  {
   
     beforeEach(() => {  
        cy.visit('/')
-       cy.login()
+       cy.fixture("example").then(data =>{
+       cy.login(data.email,data.password)
+       })
       })
 
       it('selectPESL', ()=>{

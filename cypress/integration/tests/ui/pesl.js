@@ -2,7 +2,9 @@ describe("PESL", () =>  {
   
     before(() => { 
       cy.visit('/') 
-      cy.login();  
+      cy.fixture("example").then(data =>{
+        cy.login(data.email,data.password)
+        }) 
       //cy.loginAPI();    
       })
 

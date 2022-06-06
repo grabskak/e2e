@@ -9,7 +9,9 @@ describe("Login Page", () =>  {
     })
 
     it("should login with access", ()=> {
-      cy.login()
+      cy.fixture("example").then(data =>{
+        cy.login(data.email,data.password)
+        })
       cy.url().should('eq', Cypress.env('baseUrl') + '/index.php'); 
     })
 })

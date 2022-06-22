@@ -16,8 +16,7 @@ describe("PESL", () =>  {
         cy.loginAPI(data.email,data.password)
         }) 
      
-      cy.visit('/') 
-      
+      cy.visit('/')       
       cy.intercept("GET", "https://aden-pricetag-platform.azurewebsites.net/api/PriceTag/GetListExt?PageLength=5&Page=1").as("allPESL");
       })
 

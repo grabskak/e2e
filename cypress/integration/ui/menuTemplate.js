@@ -25,24 +25,20 @@ describe("Template", () =>  {
         MainMenu.clickOnSzablony();    
         cy.get("#fd92c04d-4651-44b3-bfa9-8ab70e7c2862").click().wait(20000) //.should('be.selected')     //select template 
        
-       
-
         cy.get("#cena-glowna-pln").trigger('focus')
         cy.get("#cena-glowna-pln").click()
 
         cy.get("#params-font-name").trigger('focus')
        
         //pobierz co tam bylo ustawione
-
         cy.get("#params-font-name").invoke("prop","value").then(wartosc =>{
-          cy.log(wartosc);
-          let fontValue = wartosc;
-          cy.wrap(fontValue).as('fontValue')
+        cy.log(wartosc);
+        let fontValue = wartosc;
+        cy.wrap(fontValue).as('fontValue')
         })
 
         cy.get('@fontValue').then(fontValue => {
 
-      //  var newFontValue = fontValue+1
         cy.get("#params-font-name").select(parseInt(fontValue)+1).wait(5000)
         cy.get("#params-font-name").should('have.value',parseInt(fontValue)+1)
 

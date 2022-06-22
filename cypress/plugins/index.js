@@ -12,20 +12,15 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-/**
- * @type {Cypress.PluginConfig}
- */
-// eslint-disable-next-line no-unused-vars
+
+const { lighthouse, prepareAudit } = require("@cypress-audit/lighthouse");
+
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-  // https://github.com/bahmutov/cypress-email-results
-  // only configure the email plugin if the environment variable is set  
-   // require('cypress-email-results')(on, config, {
-      //email: process.env.EMAIL_TO,
-   //   email: ['k.grabska@aden.pl'],
-   //   emailOnSuccess: false,
-   //   dry: true,
-  //  })
- 
-}
+  on("before:browser:launch", (browser = {}, launchOptions) => {
+    prepareAudit(launchOptions);
+  });
+
+  on("task", {
+    lighthouse: lighthouse(), // calling the function is important
+  });
+};

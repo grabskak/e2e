@@ -1,3 +1,5 @@
+import "@cypress-audit/lighthouse/commands";
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -39,16 +41,19 @@ Cypress.Commands.add('login',(email,password) => {
     cy.get('.login__submit-btn').click()
 })
 
-Cypress.Commands.add('loginAPI',() => {
-    cy.request({
-        method: 'POST',
-        url: 'https://aden-pricetag-platform.azurewebsites.net/api/User/Login',
-        body: {
-            "email": "k.grabska@aden.pl",
-            "password": "Testye2e"
-        }
-})
-.then((resp)=> {
-    window.localStorage.setItem('jwt',resp.body.token)
-})   
+Cypress.Commands.add('loginAPI',(email,password)  => {
+        const daneAutoryzacja = {
+        "email": email,
+        "password": password         
+         }
+
+        cy.request("POST","https://aden-pricetag-platform.azurewebsites.net/api/User/Login",daneAutoryzacja)
+        .its("body").then(res =>
+            {
+                const authToken = res.token;
+                window.localStorage.setItem('token',authToken)      
+                const userEmail = res.email;
+                window.localStorage.setItem('userEmail',userEmail)                
+            })
+
 })

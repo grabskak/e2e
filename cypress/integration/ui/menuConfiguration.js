@@ -56,7 +56,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     
             MainMenu.clickOnKonfiguracja(); 
   
-            cy.get('#module_products').should("be.visible").trigger('focus').click()
+            cy.get('#module_roles').should("be.visible").trigger('focus').click()
             cy.wait("@rolesList").its("response.statusCode").should("equal", 200); 
             cy.wait("@functionsList").its("response.statusCode").should("equal", 200); 
           
@@ -68,16 +68,16 @@ Cypress.on('uncaught:exception', (err, runnable) => {
             //dictionary
             it('schowDistionariesList', ()=>{
                 cy.intercept("GET", "https://aden-pricetag-platform.azurewebsites.net/api/Dictionary/GetDictionaryList?PageLength=5&Page=1").as("dictionarysList");
-                cy.intercept("GET", "https://aden-pricetag-platform.azurewebsites.net/api/Dictionary/GetList?PageLength=5&Page=1&DictionaryName=Typ%20przyk%C5%82adowy").as("dictionaryList");
+              //  cy.intercept("GET", "https://aden-pricetag-platform.azurewebsites.net/api/Dictionary/GetList?PageLength=5&Page=1&DictionaryName=Typ%20przyk%C5%82adowy").as("dictionaryList");
         
                 MainMenu.clickOnKonfiguracja(); 
       
                 cy.get('#module_dictionary').should("be.visible").trigger('focus').click()
                 cy.wait("@dictionarysList").its("response.statusCode").should("equal", 200); 
-                cy.wait("@dictionaryList").its("response.statusCode").should("equal", 200); 
+            //    cy.wait("@dictionaryList").its("response.statusCode").should("equal", 200); 
               
                 cy.get('#gridDictionaryList-body').should("be.visible")
-                cy.get('#gridDictionary-body').should("be.visible")
+            //    cy.get('#gridDictionary-body').should("be.visible")
                
               })
 

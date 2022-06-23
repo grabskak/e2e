@@ -13,7 +13,7 @@
 // the project's config changing)
 
 
-//const { lighthouse, prepareAudit } = require("@cypress-audit/lighthouse");
+/*const { lighthouse, prepareAudit } = require("@cypress-audit/lighthouse");
 
 module.exports = (on, config) => {
   on("before:browser:launch", (browser = {}, launchOptions) => {
@@ -24,3 +24,9 @@ module.exports = (on, config) => {
   //  lighthouse: lighthouse(), // calling the function is important
  // });
 };
+*/
+
+module.exports = (on, config) => {
+  // `on` is used to hook into various events Cypress emits
+  // `config` is the resolved Cypress config
+}

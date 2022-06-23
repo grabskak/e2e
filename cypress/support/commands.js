@@ -1,4 +1,4 @@
-import "@cypress-audit/lighthouse/commands";
+//import "@cypress-audit/lighthouse/commands";
 
 // ***********************************************
 // This example commands.js shows you how to

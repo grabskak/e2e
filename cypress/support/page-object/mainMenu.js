@@ -14,7 +14,7 @@ class MainMenu{
     }
 
     clickOnPESL(){
-        this.menuPESL.click()
+        this.menuPESL.click().wait(10000);
     }
     clickOnDostepy(){
         this.menuDostepy.click().wait(10000);

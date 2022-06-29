@@ -8,10 +8,8 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 
-
 describe("Template", () =>  {
   
-
   beforeEach(() => {  
    
     cy.fixture("example").then(data =>{
@@ -49,25 +47,50 @@ describe("Template", () =>  {
 
        })
 
-    it('textEditorFontSize', ()=>{
+    it('textEditorFontSizeGetValue', ()=>{
 
       MainMenu.clickOnSzablony();    
       MainMenu.clickOnSzablony(); 
-      cy.get("#fd92c04d-4651-44b3-bfa9-8ab70e7c2862").click().wait(20000) //.should('be.selected')     //select template 
+      cy.get("#fd92c04d-4651-44b3-bfa9-8ab70e7c2862").click().wait(20000) 
 
         cy.get("#cena-glowna-pln").trigger('focus')
         cy.get("#cena-glowna-pln").click()
 
-        cy.get("#text-editor-fontSize").clear()
-        cy.get("#text-editor-fontSize").type("23{enter}",{delay:200})
-       // cy.get("#text-editor-fontSize").invoke("prop", "value").then(sometext =>cy.log(sometext))
+         //pobierz co tam bylo ustawione
+         cy.get("#text-editor-fontSize")
+           .invoke("prop","value")
+           .then(fontSize =>{
+               cy.log(fontSize);
+               let fontSizeValue = fontSize;
+               cy.wrap(fontSizeValue).as('fontSizeValue')
+                })
+          cy.get('@fontSizeValue').then(fontSizeValue => {
+          cy.get("#text-editor-fontSize").clear()
+          cy.get("#text-editor-fontSize").type(fontSizeValue+1,{delay:200}).click()
+          cy.get("#text-editor-fontSize")
+            .invoke("prop", "value")
+            .should(sometext =>{expect(sometext).to.equal(fontSizeValue+1)})//sprawdzam czy sie dobrze ustawilo
 
-       
-
-        cy.get("#text-editor-fontSize").clear()
-        cy.get("#text-editor-fontSize").type("60{enter}",{delay:200})
-       // cy.get("#text-editor-fontSize").invoke("prop", "value").then(sometext2 =>cy.log(sometext2))
+          cy.get("#text-editor-fontSize").clear()
+          cy.get("#text-editor-fontSize").type(fontSizeValue,{delay:200}).click()
+          cy.get("#text-editor-fontSize").invoke("prop", "value").should('eq',fontSizeValue)
+          })
+      
      
       })
+
+      it('textEditorFontSize', ()=>{
+        MainMenu.clickOnSzablony();    
+        MainMenu.clickOnSzablony(); 
+        cy.get("#fd92c04d-4651-44b3-bfa9-8ab70e7c2862").click().wait(20000) 
+  
+        cy.get("#cena-glowna-pln").trigger('focus')
+        cy.get("#cena-glowna-pln").click()
+        cy.get("#text-editor-fontSize").clear()
+        cy.get("#text-editor-fontSize").type("23{enter}",{delay:200})
+        cy.get("#text-editor-fontSize").clear()
+        cy.get("#text-editor-fontSize").type("60{enter}",{delay:200})
+             
+        })
 
     })
